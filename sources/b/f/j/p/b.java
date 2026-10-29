@@ -24,18 +24,14 @@ public abstract class b<T> implements l<T> {
 
     @Override // b.f.j.p.l
     public synchronized void b(T t, int i) {
+        if (this.a) {
+            return;
+        }
+        this.a = e(i);
         try {
-            if (this.a) {
-                return;
-            }
-            this.a = e(i);
-            try {
-                i(t, i);
-            } catch (Exception e) {
-                k(e);
-            }
-        } catch (Throwable th) {
-            throw th;
+            i(t, i);
+        } catch (Exception e) {
+            k(e);
         }
     }
 

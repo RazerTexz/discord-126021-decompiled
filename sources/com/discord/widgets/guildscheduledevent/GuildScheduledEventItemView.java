@@ -154,6 +154,16 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         textView5.setVisibility(isInGuild ? 0 : 8);
     }
 
+    /* JADX WARN: Failed to analyze thrown exceptions
+    java.util.ConcurrentModificationException
+    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1096)
+    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:1050)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:132)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+     */
     public final void configureInDirectoryEventList(HubGuildScheduledEventData eventData, View$OnClickListener cardClickListener, View$OnClickListener secondaryButtonOnClickListener, View$OnClickListener primaryButtonOnClickListener, View$OnClickListener shareButtonOnClickListener) {
         m.checkNotNullParameter(eventData, "eventData");
         m.checkNotNullParameter(cardClickListener, "cardClickListener");

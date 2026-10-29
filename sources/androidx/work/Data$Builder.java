@@ -13,7 +13,7 @@ public final class Data$Builder {
     private Map<String, Object> mValues = new HashMap();
 
     @NonNull
-    public Data build() throws Throwable {
+    public Data build() {
         Data data = new Data((Map<String, ?>) this.mValues);
         Data.toByteArrayInternal(data);
         return data;

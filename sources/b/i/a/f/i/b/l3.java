@@ -2,7 +2,6 @@ package b.i.a.f.i.b;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.RemoteException;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
 import com.google.android.gms.measurement.internal.zzn;
@@ -21,7 +20,7 @@ public abstract class l3 extends b.i.a.f.h.l.s0 implements i3 {
     }
 
     @Override // b.i.a.f.h.l.s0
-    public final boolean c(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
+    public final boolean c(int i, Parcel parcel, Parcel parcel2, int i2) throws Throwable {
         ArrayList arrayList;
         switch (i) {
             case 1:

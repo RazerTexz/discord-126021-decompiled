@@ -160,25 +160,29 @@ public final class r extends e {
                 b.i.a.f.e.n.a aVarB = b.i.a.f.e.n.a.b();
                 synchronized (lVar) {
                     k0Var = null;
-                    lVar.j = null;
-                    lVar.k = true;
-                    boolean zA = aVarB.a(context, intent, lVar.l.l, Opcodes.LOR);
-                    lVar.l.b("Bind to service requested", Boolean.valueOf(zA));
-                    if (zA) {
-                        try {
-                            lVar.wait(e0.f1414y.a.longValue());
-                        } catch (InterruptedException unused) {
-                            lVar.l.D("Wait for service connect was interrupted");
-                        }
-                        lVar.k = false;
-                        k0 k0Var2 = lVar.j;
+                    try {
                         lVar.j = null;
-                        if (k0Var2 == null) {
-                            lVar.l.H("Successfully bound to service but never got onServiceConnected callback");
+                        lVar.k = true;
+                        boolean zA = aVarB.a(context, intent, lVar.l.l, Opcodes.LOR);
+                        lVar.l.b("Bind to service requested", Boolean.valueOf(zA));
+                        if (zA) {
+                            try {
+                                lVar.wait(e0.f1414y.a.longValue());
+                            } catch (InterruptedException unused) {
+                                lVar.l.D("Wait for service connect was interrupted");
+                            }
+                            lVar.k = false;
+                            k0 k0Var2 = lVar.j;
+                            lVar.j = null;
+                            if (k0Var2 == null) {
+                                lVar.l.H("Successfully bound to service but never got onServiceConnected callback");
+                            }
+                            k0Var = k0Var2;
+                        } else {
+                            lVar.k = false;
                         }
-                        k0Var = k0Var2;
-                    } else {
-                        lVar.k = false;
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
                 if (k0Var != null) {
