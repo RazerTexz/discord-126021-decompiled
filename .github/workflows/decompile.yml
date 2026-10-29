@@ -29,8 +29,12 @@ jobs:
             --fs-case-sensitive \
             --respect-bytecode-access-modifiers \
             --show-bad-code \
-            --deobf \
-            --output-dir . \
+            --no-inline-anonymous \
+            --no-inline-methods \
+            --no-inline-kotlin-lambda \
+            --no-move-inner-classes \
+            -j "$(nproc)" \
+            -d . \
             discord-126021.apk || true
 
           find . -type f -name "*.java" -exec sed -i "/@Metadata(\|@kotlin.Metadata(\|import kotlin.Metadata/d" {} +
