@@ -1,7 +1,6 @@
 package androidx.work.impl.utils.futures;
 
 import b.i.b.d.a.a;
-import java.util.concurrent.ExecutionException;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class AbstractFuture$SetFuture<V> implements Runnable {
@@ -14,7 +13,7 @@ public final class AbstractFuture$SetFuture<V> implements Runnable {
     }
 
     @Override // java.lang.Runnable
-    public void run() throws ExecutionException, InterruptedException {
+    public void run() {
         if (this.owner.value != this) {
             return;
         }

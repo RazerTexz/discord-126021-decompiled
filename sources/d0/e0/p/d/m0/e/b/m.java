@@ -56,7 +56,7 @@ public final class m implements l<k> {
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // d0.e0.p.d.m0.e.b.l
-    public k createFromString(String str) {
+    public k createFromString(String str) throws CloneNotSupportedException {
         d0.e0.p.d.m0.k.y.d dVar;
         k k_c;
         d0.z.d.m.checkNotNullParameter(str, "representation");

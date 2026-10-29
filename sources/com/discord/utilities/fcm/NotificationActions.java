@@ -43,7 +43,7 @@ public final class NotificationActions extends BroadcastReceiver {
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     @RequiresApi(24)
-    public final void enqueue(Context context, Intent intent) {
+    public final void enqueue(Context context, Intent intent) throws Throwable {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(intent, "intent");
         Uri data = intent.getData();
@@ -94,7 +94,7 @@ public final class NotificationActions extends BroadcastReceiver {
         }
     }
 
-    private final void enqueueAckMessage(Context context, Intent intent) {
+    private final void enqueueAckMessage(Context context, Intent intent) throws Throwable {
         Long longOrNull;
         Long longOrNull2;
         Uri data = intent.getData();
@@ -120,7 +120,7 @@ public final class NotificationActions extends BroadcastReceiver {
         }
     }
 
-    private final void enqueueDirectReply(Context context, Intent intent) {
+    private final void enqueueDirectReply(Context context, Intent intent) throws Throwable {
         String queryParameter;
         Long longOrNull;
         CharSequence charSequence;
@@ -159,7 +159,7 @@ public final class NotificationActions extends BroadcastReceiver {
         NotificationClient.clear$default(NotificationClient.INSTANCE, jLongValue, context, false, 4, null);
     }
 
-    private final void enqueueTimedMute(Context context, Intent intent) {
+    private final void enqueueTimedMute(Context context, Intent intent) throws Throwable {
         Long longOrNull;
         Long longOrNull2;
         Long longOrNull3;
@@ -192,7 +192,7 @@ public final class NotificationActions extends BroadcastReceiver {
     }
 
     @RequiresApi(24)
-    private final void executeCallAction(Context context, Intent intent, boolean isAcceptingCall) {
+    private final void executeCallAction(Context context, Intent intent, boolean isAcceptingCall) throws Throwable {
         Long longOrNull;
         Long longOrNull2;
         Uri data = intent.getData();
@@ -227,7 +227,7 @@ public final class NotificationActions extends BroadcastReceiver {
 
     @Override // android.content.BroadcastReceiver
     @RequiresApi(24)
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(Context context, Intent intent) throws Throwable {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(intent, "intent");
         AppLog.i("Got notification action: " + intent);

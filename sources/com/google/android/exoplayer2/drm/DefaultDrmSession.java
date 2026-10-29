@@ -1,7 +1,5 @@
 package com.google.android.exoplayer2.drm;
 
-import android.media.MediaCryptoException;
-import android.media.MediaDrmException;
 import android.media.NotProvisionedException;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -115,7 +113,7 @@ public class DefaultDrmSession implements DrmSession {
     }
 
     @Override // com.google.android.exoplayer2.drm.DrmSession
-    public void a(@Nullable s$a s_a) throws MediaCryptoException, MediaDrmException {
+    public void a(@Nullable s$a s_a) {
         int i = this.o;
         if (i < 0) {
             StringBuilder sb = new StringBuilder(51);
@@ -344,21 +342,8 @@ public class DefaultDrmSession implements DrmSession {
         }
     }
 
-    /* JADX WARN: Failed to analyze thrown exceptions
-    java.util.ConcurrentModificationException
-    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1096)
-    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:1050)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:119)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-     */
     @RequiresNonNull({"sessionId"})
-    public final void i(boolean z2) throws NotProvisionedException {
+    public final void i(boolean z2) {
         long j;
         Pair pair;
         long jMin;
@@ -510,7 +495,7 @@ public class DefaultDrmSession implements DrmSession {
     }
 
     @EnsuresNonNullIf(expression = {"sessionId"}, result = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS)
-    public final boolean m() throws MediaCryptoException, MediaDrmException {
+    public final boolean m() {
         if (j()) {
             return true;
         }
@@ -537,7 +522,7 @@ public class DefaultDrmSession implements DrmSession {
         }
     }
 
-    public final void n(byte[] bArr, int i, boolean z2) throws NotProvisionedException {
+    public final void n(byte[] bArr, int i, boolean z2) {
         try {
             a0$a a0_aK = this.f2925b.k(bArr, this.a, i, this.h);
             this.v = a0_aK;

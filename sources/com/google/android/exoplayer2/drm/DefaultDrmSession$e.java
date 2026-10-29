@@ -1,7 +1,6 @@
 package com.google.android.exoplayer2.drm;
 
 import android.annotation.SuppressLint;
-import android.media.NotProvisionedException;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -23,7 +22,7 @@ public class DefaultDrmSession$e extends Handler {
     }
 
     @Override // android.os.Handler
-    public void handleMessage(Message message) throws NotProvisionedException {
+    public void handleMessage(Message message) {
         Pair pair = (Pair) message.obj;
         Object obj = pair.first;
         Object obj2 = pair.second;

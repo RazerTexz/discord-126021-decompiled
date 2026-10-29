@@ -1,7 +1,5 @@
 package com.google.android.exoplayer2.drm;
 
-import android.media.MediaCryptoException;
-import android.media.MediaDrmException;
 import android.media.ResourceBusyException;
 import android.os.Handler;
 import android.os.Looper;
@@ -98,7 +96,7 @@ public class DefaultDrmSessionManager implements u {
     }
 
     @Override // b.i.a.c.w2.u
-    public final void a() throws MediaCryptoException, MediaDrmException {
+    public final void a() {
         int i = this.p;
         this.p = i + 1;
         if (i != 0) {
@@ -189,7 +187,7 @@ public class DefaultDrmSessionManager implements u {
     }
 
     @Nullable
-    public final DrmSession e(Looper looper, @Nullable s$a s_a, j1 j1Var, boolean z2) throws MediaCryptoException, MediaDrmException {
+    public final DrmSession e(Looper looper, @Nullable s$a s_a, j1 j1Var, boolean z2) {
         List<DrmInitData$SchemeData> listI;
         if (this.f2931x == null) {
             this.f2931x = new DefaultDrmSessionManager$c(this, looper);
@@ -280,7 +278,7 @@ public class DefaultDrmSessionManager implements u {
         return false;
     }
 
-    public final DefaultDrmSession g(@Nullable List<DrmInitData$SchemeData> list, boolean z2, @Nullable s$a s_a) throws MediaCryptoException, MediaDrmException {
+    public final DefaultDrmSession g(@Nullable List<DrmInitData$SchemeData> list, boolean z2, @Nullable s$a s_a) {
         Objects.requireNonNull(this.q);
         boolean z3 = this.h | z2;
         UUID uuid = this.f2929b;
@@ -301,7 +299,7 @@ public class DefaultDrmSessionManager implements u {
         return defaultDrmSession;
     }
 
-    public final DefaultDrmSession h(@Nullable List<DrmInitData$SchemeData> list, boolean z2, @Nullable s$a s_a, boolean z3) throws MediaCryptoException, MediaDrmException {
+    public final DefaultDrmSession h(@Nullable List<DrmInitData$SchemeData> list, boolean z2, @Nullable s$a s_a, boolean z3) {
         DefaultDrmSession defaultDrmSessionG = g(list, z2, s_a);
         if (f(defaultDrmSessionG) && !this.o.isEmpty()) {
             l();

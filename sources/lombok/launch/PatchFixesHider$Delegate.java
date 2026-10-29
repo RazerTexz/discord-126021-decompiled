@@ -11,7 +11,12 @@ public final class PatchFixesHider$Delegate {
     private static final Method GET_CHILDREN = null;
 
     /*  JADX ERROR: ArrayIndexOutOfBoundsException in pass: SSATransform
-        java.lang.ArrayIndexOutOfBoundsException
+        java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+        	at jadx.core.dex.visitors.ssa.RenameState.startVar(RenameState.java:58)
+        	at jadx.core.dex.visitors.ssa.RenameState.init(RenameState.java:28)
+        	at jadx.core.dex.visitors.ssa.SSATransform.renameVariables(SSATransform.java:123)
+        	at jadx.core.dex.visitors.ssa.SSATransform.process(SSATransform.java:57)
+        	at jadx.core.dex.visitors.ssa.SSATransform.visit(SSATransform.java:44)
         */
     public PatchFixesHider$Delegate(b.f.e.c r3, boolean r4, b.f.e.f r5, boolean r6) {
         /*
@@ -24,11 +29,20 @@ public final class PatchFixesHider$Delegate {
     }
 
     /*  JADX ERROR: ArrayIndexOutOfBoundsException in pass: SSATransform
-        java.lang.ArrayIndexOutOfBoundsException
+        java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 8
+        	at jadx.core.dex.visitors.ssa.RenameState.startVar(RenameState.java:58)
+        	at jadx.core.dex.visitors.ssa.RenameState.init(RenameState.java:28)
+        	at jadx.core.dex.visitors.ssa.SSATransform.renameVariables(SSATransform.java:123)
+        	at jadx.core.dex.visitors.ssa.SSATransform.process(SSATransform.java:57)
+        	at jadx.core.dex.visitors.ssa.SSATransform.visit(SSATransform.java:44)
         */
     static boolean d(
     /*  JADX ERROR: ArrayIndexOutOfBoundsException in pass: SSATransform
-        java.lang.ArrayIndexOutOfBoundsException
+        java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 8
+        	at jadx.core.dex.visitors.ssa.RenameState.startVar(RenameState.java:58)
+        	at jadx.core.dex.visitors.ssa.RenameState.init(RenameState.java:28)
+        	at jadx.core.dex.visitors.ssa.SSATransform.renameVariables(SSATransform.java:123)
+        	at jadx.core.dex.visitors.ssa.SSATransform.process(SSATransform.java:57)
         */
     /*  JADX ERROR: Method generation error
         jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r7v0 ??

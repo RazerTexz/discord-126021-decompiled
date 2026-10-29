@@ -60,7 +60,7 @@ public abstract class CoroutineWorker extends ListenableWorker {
     }
 
     @Override // androidx.work.ListenableWorker
-    public final void onStopped() throws ExecutionException, InterruptedException {
+    public final void onStopped() {
         super.onStopped();
         this.future.cancel(false);
     }

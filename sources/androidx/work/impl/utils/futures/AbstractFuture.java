@@ -53,7 +53,7 @@ public abstract class AbstractFuture<V> implements a<V> {
         NULL = new Object();
     }
 
-    private void addDoneString(StringBuilder sb) throws InterruptedException {
+    private void addDoneString(StringBuilder sb) {
         try {
             Object uninterruptibly = getUninterruptibly(this);
             sb.append("SUCCESS, result=[");
@@ -95,7 +95,7 @@ public abstract class AbstractFuture<V> implements a<V> {
     }
 
     @Override // java.util.concurrent.Future
-    public final boolean cancel(boolean z2) throws ExecutionException, InterruptedException {
+    public final boolean cancel(boolean z2) {
         AbstractFuture$Cancellation abstractFuture$Cancellation;
         Object obj = this.value;
         if (!(obj == null) && !(obj instanceof AbstractFuture$SetFuture)) {
@@ -175,7 +175,7 @@ public abstract class AbstractFuture<V> implements a<V> {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    public static void complete(AbstractFuture<?> abstractFuture) throws ExecutionException, InterruptedException {
+    public static void complete(AbstractFuture<?> abstractFuture) {
         AbstractFuture$Listener abstractFuture$Listener = null;
         while (true) {
             abstractFuture.releaseWaiters();
@@ -303,7 +303,7 @@ public abstract class AbstractFuture<V> implements a<V> {
         return obj;
     }
 
-    public static Object getFutureValue(a<?> aVar) throws ExecutionException, InterruptedException {
+    public static Object getFutureValue(a<?> aVar) {
         if (aVar instanceof AbstractFuture) {
             Object obj = ((AbstractFuture) aVar).value;
             if (!(obj instanceof AbstractFuture$Cancellation)) {
@@ -334,7 +334,7 @@ public abstract class AbstractFuture<V> implements a<V> {
         }
     }
 
-    private static <V> V getUninterruptibly(Future<V> future) throws ExecutionException, InterruptedException {
+    private static <V> V getUninterruptibly(Future<V> future) throws ExecutionException {
         V v;
         boolean z2 = false;
         while (true) {
@@ -437,7 +437,7 @@ public abstract class AbstractFuture<V> implements a<V> {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    public boolean set(@Nullable V v) throws ExecutionException, InterruptedException {
+    public boolean set(@Nullable V v) {
         if (v == null) {
             v = (V) NULL;
         }
@@ -448,7 +448,7 @@ public abstract class AbstractFuture<V> implements a<V> {
         return true;
     }
 
-    public boolean setException(Throwable th) throws ExecutionException, InterruptedException {
+    public boolean setException(Throwable th) {
         if (!ATOMIC_HELPER.casValue(this, null, new AbstractFuture$Failure((Throwable) checkNotNull(th)))) {
             return false;
         }
@@ -456,7 +456,7 @@ public abstract class AbstractFuture<V> implements a<V> {
         return true;
     }
 
-    public boolean setFuture(a<? extends V> aVar) throws ExecutionException, InterruptedException {
+    public boolean setFuture(a<? extends V> aVar) {
         AbstractFuture$Failure abstractFuture$Failure;
         checkNotNull(aVar);
         Object obj = this.value;
@@ -490,7 +490,7 @@ public abstract class AbstractFuture<V> implements a<V> {
         return false;
     }
 
-    public String toString() throws InterruptedException {
+    public String toString() {
         String string;
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());

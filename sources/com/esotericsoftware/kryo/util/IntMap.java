@@ -689,15 +689,13 @@ public class IntMap<V> {
     /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:15:0x003e -> B:16:0x003f). Please report as a decompilation issue!!! */
     /*  JADX ERROR: StackOverflowError in pass: RegionMakerVisitor
         java.lang.StackOverflowError
-        	at jadx.core.dex.attributes.AttributeStorage.add(AttributeStorage.java:53)
-        	at jadx.core.dex.attributes.AttrNode.add(AttrNode.java:21)
-        	at jadx.core.dex.regions.conditions.Compare.<init>(Compare.java:12)
-        	at jadx.core.dex.regions.conditions.IfCondition.fromIfNode(IfCondition.java:73)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.makeIfInfo(IfRegionMaker.java:161)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextIfNodeInfo(IfRegionMaker.java:631)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextIf(IfRegionMaker.java:602)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.mergeNestedIfNodes(IfRegionMaker.java:413)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:68)
+        	at java.base/java.util.HashMap.hash(HashMap.java:338)
+        	at java.base/java.util.HashMap.getNode(HashMap.java:577)
+        	at java.base/java.util.HashMap.containsKey(HashMap.java:603)
+        	at java.base/java.util.HashSet.contains(HashSet.java:214)
+        	at jadx.core.dex.visitors.regions.maker.RegionStack.containsExit(RegionStack.java:106)
+        	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:55)
+        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:111)
         	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
         	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
         	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:117)
@@ -1712,6 +1710,8 @@ public class IntMap<V> {
         	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
         	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
         	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:117)
+        	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
+        	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
         */
     public java.lang.String toString() {
         /*

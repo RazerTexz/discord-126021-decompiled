@@ -368,7 +368,7 @@ public final class Data {
     @NonNull
     @TypeConverter
     @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
-    public static byte[] toByteArrayInternal(@NonNull Data data) {
+    public static byte[] toByteArrayInternal(@NonNull Data data) throws Throwable {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = null;
         try {
