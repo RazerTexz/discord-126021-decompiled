@@ -34,7 +34,7 @@ jobs:
             --no-inline-kotlin-lambda \
             --no-move-inner-classes \
             -j "$(nproc)" \
-            -d . \
+            -d "${{ github.job }}" \
             discord-126021.apk || true
 
           find . -type f -name "*.java" -exec sed -i "/@Metadata(\|@kotlin.Metadata(\|import kotlin.Metadata/d" {} +
@@ -42,7 +42,7 @@ jobs:
       - name: Update repository
         run: |
           git init
-          git fetch https://github.com/RazerTexz/discord-126021-decompiled
+          git fetch "https://github.com/${{ github.repository }}"
           git reset FETCH_HEAD
 
           git config user.name "github-actions[bot]"
@@ -50,12 +50,12 @@ jobs:
 
           git add resources sources
           git commit -m "chore: decompile"
-          git push "https://x:${{ github.token }}@github.com/RazerTexz/discord-126021-decompiled" HEAD:main
+          git push "https://x:${{ github.token }}@github.com/${{ github.repository }}" HEAD:main
 
       - name: Upload
         uses: actions/upload-artifact@v7
         with:
-          name: decompile
+          name: ${{ github.job }}
           path: |
             resources
             sources
