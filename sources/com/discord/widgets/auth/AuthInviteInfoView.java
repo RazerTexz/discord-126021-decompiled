@@ -63,6 +63,19 @@ public final class AuthInviteInfoView extends RelativeLayout {
         textView2.setText(guildTemplate.getName());
     }
 
+    /* JADX WARN: Failed to analyze thrown exceptions
+    java.util.ConcurrentModificationException
+    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1096)
+    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:1050)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:132)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+     */
     public final void configureInvite(ModelInvite invite) {
         String username;
         String discriminator;

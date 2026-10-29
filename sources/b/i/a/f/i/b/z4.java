@@ -178,9 +178,19 @@ public final class z4 extends l3 {
         i(new j5(this, zzaqVar, zznVar));
     }
 
+    /* JADX WARN: Failed to analyze thrown exceptions
+    java.util.ConcurrentModificationException
+    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1096)
+    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:1050)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:132)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
+     */
     @Override // b.i.a.f.i.b.i3
     @BinderThread
-    public final void m(zzn zznVar) throws Throwable {
+    public final void m(zzn zznVar) {
         if (b.i.a.f.h.l.t8.b() && this.a.k.h.o(p.J0)) {
             b.c.a.a0.d.w(zznVar.j);
             Objects.requireNonNull(zznVar.F, "null reference");
@@ -256,7 +266,7 @@ public final class z4 extends l3 {
 
     @Override // b.i.a.f.i.b.i3
     @BinderThread
-    public final List<zzku> u(String str, String str2, String str3, boolean z2) throws ExecutionException, InterruptedException {
+    public final List<zzku> u(String str, String str2, String str3, boolean z2) {
         t0(str, true);
         try {
             List<u9> list = (List) ((FutureTask) this.a.f().t(new g5(this, str, str2, str3))).get();

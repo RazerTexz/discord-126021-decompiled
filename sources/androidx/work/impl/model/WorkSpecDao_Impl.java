@@ -1607,7 +1607,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public void setOutput(String str, Data data) {
+    public void setOutput(String str, Data data) throws Throwable {
         this.__db.assertNotSuspendingTransaction();
         SupportSQLiteStatement supportSQLiteStatementAcquire = this.__preparedStmtOfSetOutput.acquire();
         byte[] byteArrayInternal = Data.toByteArrayInternal(data);

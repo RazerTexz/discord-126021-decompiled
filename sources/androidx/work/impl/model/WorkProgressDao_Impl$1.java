@@ -16,7 +16,7 @@ public class WorkProgressDao_Impl$1 extends EntityInsertionAdapter<WorkProgress>
     }
 
     @Override // androidx.room.EntityInsertionAdapter
-    public /* bridge */ /* synthetic */ void bind(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) {
+    public /* bridge */ /* synthetic */ void bind(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) throws Throwable {
         bind2(supportSQLiteStatement, workProgress);
     }
 
@@ -26,7 +26,7 @@ public class WorkProgressDao_Impl$1 extends EntityInsertionAdapter<WorkProgress>
     }
 
     /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
-    public void bind2(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) {
+    public void bind2(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) throws Throwable {
         String str = workProgress.mWorkSpecId;
         if (str == null) {
             supportSQLiteStatement.bindNull(1);

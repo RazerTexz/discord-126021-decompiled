@@ -10,7 +10,7 @@ public final class StickerFormatType$Companion {
 
     /* JADX WARN: Code duplicated, block: B:15:0x001e  */
     /* JADX WARN: Code duplicated, block: B:19:? A[RETURN, SYNTHETIC] */
-    public final StickerFormatType a(int i) throws CloneNotSupportedException {
+    public final StickerFormatType a(int i) {
         StickerFormatType stickerFormatType;
         StickerFormatType[] stickerFormatTypeArrValues = StickerFormatType.values();
         for (int i2 = 0; i2 < 4; i2++) {

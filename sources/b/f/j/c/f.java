@@ -126,7 +126,9 @@ public class f {
             b.f.j.r.b.b();
             b.f.j.j.e eVarA = this.f.a(cacheKey);
             if (eVarA != null) {
-                return d(cacheKey, eVarA);
+                z.g<b.f.j.j.e> gVarD = d(cacheKey, eVarA);
+                b.f.j.r.b.b();
+                return gVarD;
             }
             try {
                 gVarC = z.g.a(new e(this, null, atomicBoolean, cacheKey), this.d);
@@ -134,9 +136,11 @@ public class f {
                 b.f.d.e.a.n(f.class, e, "Failed to schedule disk-cache read for %s", ((b.f.b.a.f) cacheKey).a);
                 gVarC = z.g.c(e);
             }
-            return gVarC;
-        } finally {
             b.f.j.r.b.b();
+            return gVarC;
+        } catch (Throwable th) {
+            b.f.j.r.b.b();
+            throw th;
         }
     }
 
